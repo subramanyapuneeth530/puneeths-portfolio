@@ -1,0 +1,44 @@
+[
+    {
+        "id": "01",
+        "title": "Document Intelligence API",
+        "description": "A fully local, zero-API-cost retrieval-augmented generation pipeline deployed as a 3-service Docker Compose stack.",
+        "repoUrl": "https://github.com/subramanyapuneeth530/YOUR_REPO_NAME",
+        "colorClass": "purple",
+        "techStack": ["FastAPI", "LangChain", "Llama 3.2", "ChromaDB", "Docker"],
+        "workflow": [
+            "**Ingestion Pipeline:** The workflow begins with a user uploading a PDF or TXT file. The document undergoes semantic chunking, and vector embeddings are generated using the `MiniLM-L6-v2` model.",
+            "**Vector Storage:** These embeddings are indexed and stored locally in a ChromaDB vector store.",
+            "**Retrieval & Generation:** When a user submits a query, the system performs a cosine similarity search against the ChromaDB store to retrieve relevant document context. This context is passed to a local Llama 3.2 model via Ollama to generate an accurate, grounded answer.",
+            "**Deployment:** The entire architecture is deployed as a 3-service Docker Compose stack (FastAPI backend, ChromaDB, and Streamlit UI), allowing the system to boot with a single command."
+        ]
+    },
+    {
+        "id": "02",
+        "title": "ECP Pedestrian Detection",
+        "description": "A multi-model benchmark and evaluation pipeline built for edge deployment on autonomous vehicles.",
+        "repoUrl": "https://github.com/subramanyapuneeth530/YOUR_REPO_NAME",
+        "colorClass": "sky",
+        "techStack": ["PyTorch", "CUDA", "YOLOv8", "RT-DETR", "PySide6"],
+        "workflow": [
+            "**Data Pipeline:** The workflow starts with the EuroCity Persons (ECP) dataset, containing over 238K instances across 47K images. A custom ECP YOLO annotation converter formats the data for training.",
+            "**Model Training:** A YOLOv8s model is fine-tuned on the processed dataset. This fine-tuning raised the mAP@50 metric from 9.1% (SSDLite baseline) to 38.4% (RT-DETR-l).",
+            "**Benchmark Interface:** The evaluation workflow utilizes an interactive PySide6 viewer. Through an abstract `BaseAdapter` pattern, 9 different models are hot-swappable via a dropdown menu with zero UI code changes.",
+            "**Analysis:** The system performs live detection with FPS and latency overlays rendered via QPainter, and outputs benchmark validation subsets to a CSV export."
+        ]
+    },
+    {
+        "id": "03",
+        "title": "Spotify Desktop Controller",
+        "description": "A decoupled desktop application ensuring the PySide6 UI has zero business logic dependencies on the backend.",
+        "repoUrl": "https://github.com/subramanyapuneeth530/YOUR_REPO_NAME",
+        "colorClass": "green",
+        "techStack": ["Python", "FastAPI", "Spotipy", "OAuth 2.0 PKCE", "PySide6"],
+        "workflow": [
+            "**Authentication Flow:** Initiates with an automated local callback server managing a full OAuth 2.0 PKCE flow to securely authenticate with the Spotify API. Tokens are cached locally to bypass re-authentication.",
+            "**Backend Communication:** A FastAPI backend handles the Spotipy SDK integration and retry logic seamlessly.",
+            "**Frontend Rendering:** The PySide6 frontend communicates with the backend via HTTP. All API polling is handled via `QTimer` to ensure a highly responsive, non-blocking UI thread.",
+            "**Custom Graphics:** The visual workflow utilizes a custom rendering pipeline via `QPainter` to handle animated reels and album art, governed by a centralized theme module."
+        ]
+    }
+]
