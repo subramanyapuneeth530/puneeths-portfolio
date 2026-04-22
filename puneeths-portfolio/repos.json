@@ -1,0 +1,78 @@
+[
+    {
+        "id": "doc-intelligence",
+        "title": "Document Intelligence API",
+        "description": "A fully local, zero-API-cost retrieval-augmented generation pipeline deployed as a 3-service Docker Compose stack. Exposes 5 REST endpoints with full Pydantic validation, async file handling, and auto-generated Swagger UI.",
+        "repoUrl": "https://github.com/subramanyapuneeth530/doc-intelligence",
+        "colorClass": "gold",
+        "pinned": true,
+        "techStack": ["FastAPI", "LangChain", "Llama 3.2", "ChromaDB", "Docker"],
+        "workflow": [
+            { "icon": "📄", "title": "PDF / TXT Upload", "desc": "aiofiles async handler", "iconColor": "var(--gold)" },
+            { "icon": "🔪", "title": "Semantic Chunking", "desc": "MiniLM-L6-v2 embeddings", "iconColor": "var(--gold)" },
+            { "icon": "🗄️", "title": "ChromaDB Vector Store", "desc": "Local cosine similarity index", "iconColor": "var(--rocky)" },
+            { "icon": "🔍", "title": "Query & Retrieval", "desc": "Similarity search + context", "iconColor": "var(--rocky)" },
+            { "icon": "🦙", "title": "Llama 3.2 via Ollama", "desc": "Grounded answer generation", "iconColor": "#34d399" }
+        ]
+    },
+    {
+        "id": "ECP-Pedestrian-Detection",
+        "title": "ECP Pedestrian Detection",
+        "description": "Multi-model benchmark and evaluation pipeline for edge deployment on autonomous vehicles. Fine-tuning raised mAP@50 from 9.1% (SSDLite baseline) to 38.4% (RT-DETR-l) across 238K+ instances.",
+        "repoUrl": "https://github.com/subramanyapuneeth530/ECP-Pedestrian-Detection",
+        "colorClass": "rocky",
+        "pinned": true,
+        "techStack": ["PyTorch", "CUDA", "YOLOv8", "RT-DETR", "PySide6", "Ultralytics"],
+        "workflow": [
+            { "icon": "🏙️", "title": "ECP Dataset", "desc": "238K instances · 47K images", "iconColor": "var(--rocky)" },
+            { "icon": "🔄", "title": "ECP→YOLO Converter", "desc": "Custom annotation pipeline", "iconColor": "var(--rocky)" },
+            { "icon": "🎯", "title": "9-Model Benchmark", "desc": "BaseAdapter hot-swap pattern", "iconColor": "var(--gold)" },
+            { "icon": "📊", "title": "mAP@50: 38.4%", "desc": "PySide6 FPS/latency overlay", "iconColor": "#34d399" }
+        ]
+    },
+    {
+        "id": "Spotify-Desktop-Control-",
+        "title": "Spotify Desktop Controller",
+        "description": "A fully decoupled desktop application with PySide6 UI having zero business logic dependencies on the backend. Full OAuth 2.0 PKCE flow, token caching, non-blocking QTimer polling, and custom QPainter rendering pipeline.",
+        "repoUrl": "https://github.com/subramanyapuneeth530/Spotify-Desktop-Control-",
+        "colorClass": "green",
+        "pinned": true,
+        "techStack": ["Python", "FastAPI", "Spotipy", "OAuth 2.0 PKCE", "PySide6"],
+        "workflow": [
+            { "icon": "🔐", "title": "OAuth 2.0 PKCE Flow", "desc": "Local callback server · token cache", "iconColor": "#34d399" },
+            { "icon": "⚡", "title": "FastAPI Backend", "desc": "Spotipy SDK · retry logic", "iconColor": "var(--gold)" },
+            { "icon": "🖥️", "title": "PySide6 Frontend", "desc": "QTimer polling · zero logic", "iconColor": "#34d399" },
+            { "icon": "🎨", "title": "QPainter Pipeline", "desc": "Animated reels · album art", "iconColor": "var(--nebula)" }
+        ]
+    },
+    {
+        "id": "Spotify-Playlist-Manager",
+        "title": "Library Analytics & Health",
+        "description": "Comprehensive Spotify management tool featuring a dashboard with deep library analytics, duplicate removal, and health score tracking using FastAPI and Chart.js.",
+        "repoUrl": "https://github.com/subramanyapuneeth530/Spotify-Playlist-Manager",
+        "colorClass": "gold",
+        "pinned": true,
+        "techStack": ["Python", "FastAPI", "Uvicorn", "Jinja2", "Chart.js", "SQLite"],
+        "workflow": [
+            { "icon": "📊", "title": "Library Indexing", "desc": "Local SQLite caching of Spotify data", "iconColor": "var(--gold)" },
+            { "icon": "💖", "title": "Health Score", "desc": "Analytics on playlist freshness & variety", "iconColor": "var(--nebula)" },
+            { "icon": "🧹", "title": "Duplicate Removal", "desc": "Automated script to clean overlapping tracks", "iconColor": "var(--rocky)" },
+            { "icon": "📈", "title": "Visual Dashboard", "desc": "Interactive charts via Chart.js", "iconColor": "#34d399" }
+        ]
+    },
+    {
+        "id": "rag-lens",
+        "title": "RAG Lens Visualizer",
+        "description": "Educational visualizer for RAG pipelines. Allows users to track internal states of AI retrieval, tokenization, and vector search with interactive 3D projections.",
+        "repoUrl": "https://github.com/subramanyapuneeth530/rag-lens",
+        "colorClass": "nebula",
+        "pinned": true,
+        "techStack": ["React 18", "TailwindCSS", "Framer Motion", "Ollama", "ChromaDB"],
+        "workflow": [
+            { "icon": "🪵", "title": "Text Segmentation", "desc": "Semantic chunking & tokenization", "iconColor": "var(--nebula)" },
+            { "icon": "🎲", "title": "3D Embedding Projection", "desc": "Visualize vector spaces in real-time", "iconColor": "var(--gold)" },
+            { "icon": "🧠", "title": "Similarity Search", "desc": "Ranked retrieval via cosine similarity", "iconColor": "var(--rocky)" },
+            { "icon": "✍️", "title": "LLM Verification", "desc": "Grounding response in retrieved context", "iconColor": "#34d399" }
+        ]
+    }
+]
