@@ -1081,59 +1081,25 @@ footer{
 <!-- ============================================================
      CONTACT
 ============================================================ -->
-<section id="contact" style="border-top:1px solid var(--border);">
-  <div class="section-inner">
-    <div class="section-header reveal">
+<section id="contact" style="border-top:1px solid var(--border); padding: 100px 0;">
+  <div class="section-inner" style="max-width: 600px; margin: 0 auto; text-align: center;">
+    <div class="section-header reveal" style="margin-bottom: 32px;">
       <span class="section-eyebrow">Let's Connect</span>
       <h2 class="section-title">Get In <span>Touch</span></h2>
     </div>
-    <div class="contact-grid">
-      <div class="reveal">
-        <div class="contact-info-title">Open to opportunities,<br>collaborations & research.</div>
-        <p class="contact-info-desc">Whether you're working on an interesting AI/ML project, looking for a backend engineer, or exploring Edge AI research — I'd love to hear from you.</p>
-        <div class="contact-detail">
-          <div class="cd-icon"><i class="fas fa-envelope"></i></div>
-          <div><span class="cd-label">EMAIL</span><span class="cd-value">subramanyapuneeth530@gmail.com</span></div>
-        </div>
-        <div class="contact-detail">
-          <div class="cd-icon"><i class="fas fa-phone"></i></div>
-          <div><span class="cd-label">PHONE</span><span class="cd-value">+91 8951434098</span></div>
-        </div>
-        <div class="contact-detail">
-          <div class="cd-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div><span class="cd-label">LOCATION</span><span class="cd-value">Bengaluru, India</span></div>
-        </div>
-        <div class="contact-detail">
-          <div class="cd-icon"><i class="fab fa-linkedin-in"></i></div>
-          <div><span class="cd-label">LINKEDIN</span><a href="https://www.linkedin.com/in/puneeth-subramanya-channakrishna/" target="_blank" class="cd-value" style="color:var(--sky);">linkedin.com/in/puneeth</a></div>
-        </div>
-      </div>
-      <div class="reveal d1">
-        <div class="contact-form">
-          <div class="form-group">
-            <label class="form-label">YOUR NAME</label>
-            <input type="text" id="f-name" name="name" autocomplete="name" class="form-input" placeholder="John Doe">
-            <div class="form-error">Name is required</div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">EMAIL ADDRESS</label>
-            <input type="email" id="f-email" name="email" autocomplete="email" class="form-input" placeholder="john@example.com">
-            <div class="form-error">Valid email is required</div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">SUBJECT</label>
-            <input type="text" id="f-subject" name="subject" class="form-input" placeholder="Opportunity / Collaboration / Research">
-            <div class="form-error">Subject is required</div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">MESSAGE</label>
-            <textarea id="f-message" name="message" class="form-textarea" placeholder="Tell me about your project or opportunity..."></textarea>
-            <div class="form-error">Message is required</div>
-          </div>
-          <button class="form-submit" id="f-submit-btn" onclick="submitForm()"><i class="fas fa-paper-plane"></i> Send Message</button>
-          <div class="form-success" id="form-success"><i class="fas fa-check-circle" style="margin-right:8px;"></i>Message sent! I'll get back to you soon.</div>
-          <div class="form-error" id="form-failure" style="text-align:center; padding:10px; font-size:0.85rem; display:none;"><i class="fas fa-exclamation-circle" style="margin-right:8px;"></i>Failed to send message. Please check your endpoint.</div>
-        </div>
+    <div class="reveal">
+      <p class="contact-info-desc" style="margin-bottom: 48px; font-size: 1.05rem;">Whether you're working on an interesting AI/ML project, looking for a backend engineer, or exploring Edge AI research — my inbox is always open.</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+        <a href="mailto:subramanyapuneeth530@gmail.com" class="btn-primary" style="width: 100%; max-width: 300px; justify-content: center; padding: 16px; font-size: 1rem;">
+          <i class="fas fa-envelope"></i> Email Me
+        </a>
+        <a href="https://www.linkedin.com/in/puneeth-subramanya-channakrishna/" target="_blank" rel="noopener noreferrer" class="btn-outline" style="width: 100%; max-width: 300px; justify-content: center; padding: 16px; font-size: 1rem;">
+          <i class="fab fa-linkedin-in"></i> Connect on LinkedIn
+        </a>
+        <a href="https://github.com/subramanyapuneeth530" target="_blank" rel="noopener noreferrer" class="btn-outline" style="width: 100%; max-width: 300px; justify-content: center; padding: 16px; font-size: 1rem;">
+          <i class="fab fa-github"></i> View my GitHub
+        </a>
       </div>
     </div>
   </div>
@@ -1389,65 +1355,7 @@ function buildFilters() {
 
 fetchRepos();
 
-/* ============================================================
-   CONTACT FORM
-============================================================ */
-async function submitForm() {
-  const fields = [
-    { id:'f-name', check: v => v.trim().length > 0 },
-    { id:'f-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
-    { id:'f-subject', check: v => v.trim().length > 0 },
-    { id:'f-message', check: v => v.trim().length > 0 }
-  ];
-  let valid = true;
-  fields.forEach(f => {
-    const el = document.getElementById(f.id);
-    const ok = f.check(el.value);
-    el.classList.toggle('error', !ok);
-    if(!ok) valid = false;
-  });
-  if(valid) {
-    const n = document.getElementById('f-name').value;
-    const e = document.getElementById('f-email').value;
-    const s = document.getElementById('f-subject').value;
-    const m = document.getElementById('f-message').value;
-    
-    const btn = document.getElementById('f-submit-btn');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    btn.disabled = true;
 
-    try {
-      // ⚠️ IMPORTANT: Replace this URL with your actual Formspree endpoint or Web3Forms API endpoint.
-      // Example: https://formspree.io/f/xabcdyef
-      const endpoint = "YOUR_ENDPOINT_HERE"; 
-      
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({ name: n, email: e, subject: s, message: m })
-      });
-
-      if (response.ok) {
-        document.getElementById('form-success').style.display = 'block';
-        document.getElementById('form-failure').style.display = 'none';
-        fields.forEach(f => document.getElementById(f.id).value = '');
-        setTimeout(() => document.getElementById('form-success').style.display='none', 4000);
-      } else {
-        throw new Error('Failed to send');
-      }
-    } catch (error) {
-      document.getElementById('form-failure').style.display = 'block';
-      setTimeout(() => document.getElementById('form-failure').style.display='none', 4000);
-    } finally {
-      btn.innerHTML = originalText;
-      btn.disabled = false;
-    }
-  }
-}
 
 /* ============================================================
    CANVAS BACKGROUND — Neural Constellation
