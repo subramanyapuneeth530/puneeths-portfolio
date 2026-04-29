@@ -1112,26 +1112,27 @@ footer{
         <div class="contact-form">
           <div class="form-group">
             <label class="form-label">YOUR NAME</label>
-            <input type="text" id="f-name" class="form-input" placeholder="John Doe">
+            <input type="text" id="f-name" name="name" autocomplete="name" class="form-input" placeholder="John Doe">
             <div class="form-error">Name is required</div>
           </div>
           <div class="form-group">
             <label class="form-label">EMAIL ADDRESS</label>
-            <input type="email" id="f-email" class="form-input" placeholder="john@example.com">
+            <input type="email" id="f-email" name="email" autocomplete="email" class="form-input" placeholder="john@example.com">
             <div class="form-error">Valid email is required</div>
           </div>
           <div class="form-group">
             <label class="form-label">SUBJECT</label>
-            <input type="text" id="f-subject" class="form-input" placeholder="Opportunity / Collaboration / Research">
+            <input type="text" id="f-subject" name="subject" class="form-input" placeholder="Opportunity / Collaboration / Research">
             <div class="form-error">Subject is required</div>
           </div>
           <div class="form-group">
             <label class="form-label">MESSAGE</label>
-            <textarea id="f-message" class="form-textarea" placeholder="Tell me about your project or opportunity..."></textarea>
+            <textarea id="f-message" name="message" class="form-textarea" placeholder="Tell me about your project or opportunity..."></textarea>
             <div class="form-error">Message is required</div>
           </div>
-          <button class="form-submit" onclick="submitForm()"><i class="fas fa-paper-plane"></i> Send Message</button>
+          <button class="form-submit" id="f-submit-btn" onclick="submitForm()"><i class="fas fa-paper-plane"></i> Send Message</button>
           <div class="form-success" id="form-success"><i class="fas fa-check-circle" style="margin-right:8px;"></i>Message sent! I'll get back to you soon.</div>
+          <div class="form-error" id="form-failure" style="text-align:center; padding:10px; font-size:0.85rem; display:none;"><i class="fas fa-exclamation-circle" style="margin-right:8px;"></i>Failed to send message. Please check your endpoint.</div>
         </div>
       </div>
     </div>
@@ -1391,7 +1392,7 @@ fetchRepos();
 /* ============================================================
    CONTACT FORM
 ============================================================ */
-function submitForm() {
+async function submitForm() {
   const fields = [
     { id:'f-name', check: v => v.trim().length > 0 },
     { id:'f-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
@@ -1410,10 +1411,41 @@ function submitForm() {
     const e = document.getElementById('f-email').value;
     const s = document.getElementById('f-subject').value;
     const m = document.getElementById('f-message').value;
-    window.open(`mailto:subramanyapuneeth530@gmail.com?subject=${encodeURIComponent(s)}&body=${encodeURIComponent(`From: ${n} (${e})\n\n${m}`)}`);
-    document.getElementById('form-success').style.display = 'block';
-    fields.forEach(f => document.getElementById(f.id).value = '');
-    setTimeout(() => document.getElementById('form-success').style.display='none', 4000);
+    
+    const btn = document.getElementById('f-submit-btn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    try {
+      // ⚠️ IMPORTANT: Replace this URL with your actual Formspree endpoint or Web3Forms API endpoint.
+      // Example: https://formspree.io/f/xabcdyef
+      const endpoint = "YOUR_ENDPOINT_HERE"; 
+      
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ name: n, email: e, subject: s, message: m })
+      });
+
+      if (response.ok) {
+        document.getElementById('form-success').style.display = 'block';
+        document.getElementById('form-failure').style.display = 'none';
+        fields.forEach(f => document.getElementById(f.id).value = '');
+        setTimeout(() => document.getElementById('form-success').style.display='none', 4000);
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch (error) {
+      document.getElementById('form-failure').style.display = 'block';
+      setTimeout(() => document.getElementById('form-failure').style.display='none', 4000);
+    } finally {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }
   }
 }
 
